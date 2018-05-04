@@ -36,17 +36,8 @@ public class TrelloClient {
         URI url = buildUrlAdress();
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
 
-        Optional opt = Optional.ofNullable(boardsResponse);
-        if (opt.isPresent()) {
-            return Arrays.asList(boardsResponse);
-        } else {
-            return new ArrayList<>();
-        }
+        return Optional.ofNullable(boardsResponse).map(br -> Arrays.asList(br)).orElse(new ArrayList<>());
 
-//        if (boardsResponse != null) {
-//            return Arrays.asList(boardsResponse);
-//        }
-//        return new ArrayList<>();
     }
 
     private URI buildUrlAdress() {
