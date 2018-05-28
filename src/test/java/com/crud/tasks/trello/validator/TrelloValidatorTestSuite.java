@@ -44,13 +44,22 @@ public class TrelloValidatorTestSuite {
     }
 
     @Test
-    public void testValidateCard(){
+    public void testValidateCardOk(){
         //Given
-        Logger LOGGER = mock(Logger.class);
-        TrelloCard trelloCard = new TrelloCard("name", "test", "pos", "list");
+        TrelloCard trelloCard = new TrelloCard("name", "desc", "pos", "2");
         //When
-        trelloValidator.validateCard(trelloCard);
-        //verify(LOGGER)
+        String message = trelloValidator.validateCard(trelloCard);
+        //Then
+        Assert.assertEquals("Seems that app is used in proper way", message);
+    }
 
+    @Test
+    public void testValidateCardTest(){
+        //Given
+        TrelloCard trelloCard = new TrelloCard("test", "test", "pos", "2");
+        //When
+        String message = trelloValidator.validateCard(trelloCard);
+        //Then
+        Assert.assertEquals("Someone is testing this app!", message);
     }
 }
