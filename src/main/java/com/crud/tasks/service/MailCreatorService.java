@@ -24,6 +24,7 @@ public class MailCreatorService {
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("greetings", "have nice day");
         context.setVariable("company", "Crud App");
+        context.setVariable("admin_mail", adminConfig.getAdminMail());
         return templateEngine.process("/mail/created-trello-card-mail", context);
         //przed mail dać /
     }
