@@ -31,6 +31,6 @@ public class EmailScheduler {
         if(size == 1) {
             task = " task";
         }
-        simpleEmailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT, "Currently in database you have " + size + task));
+        simpleEmailService.sendScheduleMail(new Mail(adminConfig.getAdminMail(), SUBJECT, "Currently in database you have " + size + task));
     }
 }
