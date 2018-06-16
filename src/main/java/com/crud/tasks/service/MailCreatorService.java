@@ -41,7 +41,7 @@ public class MailCreatorService {
         //przed mail dać /
     }
 
-    public String buildTrelloScheduleMail(String message){
+    public String buildTrelloScheduleMail(String message) {
         List<String> functionality = new ArrayList<>();
         functionality.add("Add more tasks");
         functionality.add("Manage tasks which you have done using trello");

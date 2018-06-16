@@ -42,17 +42,17 @@ public class SimpleEmailService {
         }
     }
 
-    public void sendScheduleMail(Mail mail){
+    public void sendScheduleMail(Mail mail) {
         LOGGER.info("Starting daily mail preparation...");
-        try{
+        try {
             javaMailSender.send(createScheduleMimeMessage(mail));
             LOGGER.info("Email has been sent.");
-        } catch(MailException e){
+        } catch (MailException e) {
             LOGGER.error("Failed to process sending daily mail", e.getMessage(), e);
         }
     }
 
-    private SimpleMailMessage createMailMessage(final Mail mail) {
+    public SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
@@ -64,7 +64,7 @@ public class SimpleEmailService {
         return mailMessage;
     }
 
-    private MimeMessagePreparator createMimeMessageTrelloCard(final Mail mail) {
+    public MimeMessagePreparator createMimeMessageTrelloCard(final Mail mail) {
         return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
@@ -73,7 +73,7 @@ public class SimpleEmailService {
         };
     }
 
-    private MimeMessagePreparator createScheduleMimeMessage(final Mail mail){
+    public MimeMessagePreparator createScheduleMimeMessage(final Mail mail) {
         return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
